@@ -2,7 +2,9 @@
 
 $heading = 'My notes Us';
 
-$config = require('config/database.php');
+$config = require 'config/database.php';
+
+// dd($config['databases']);
 
 $db = new Database($config['databases']);
 

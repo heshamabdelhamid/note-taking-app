@@ -1,11 +1,10 @@
 <?php
 
-
 return [
     'databases' => [
-        'host' => 'localhost',
-        'port' => '3306',
-        'dbname' => 'php_pdo',
-        'charset' => 'utf8mb4'
-    ]
+        'host'    => '127.0.0.1',
+        'port'    => '3306',
+        'dbname'  => 'notes_app',
+        'charset' => 'utf8mb4',
+    ],
 ];

@@ -8,6 +8,6 @@
 
 
 /**
-* This is a wrong because it is SQL injectable, please don't do this never
-* $note = $db->query("SELECT * FROM notes where id = {$_GET['id']}")->fetch();
-*/
+ * This is a wrong because it is SQL injectable, please don't do this never
+ * $note = $db->query("SELECT * FROM notes where id = {$_GET['id']}")->fetch();
+ */

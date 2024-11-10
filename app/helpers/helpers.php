@@ -11,7 +11,7 @@ function dd(...$value): void
     die();
 }
 
-function abort(int $code): void
+function abort(int $code = 404): void
 {
     http_response_code($code);
 
@@ -33,4 +33,11 @@ function routeToController($uri, $routes)
     } else {
         return abort(404);
     }
+}
+
+
+function auth($condition)
+{
+    if (!$condition)
+        abort(Responce::FORBIDDEN);
 }

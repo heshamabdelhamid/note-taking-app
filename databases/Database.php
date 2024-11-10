@@ -4,35 +4,45 @@ class Database
 {
     private PDO $connection;
 
+    private $statement;
+
     public function __construct(array $config)
     {
-        try {
-            // Build DSN string from config
-            $dsn = 'mysql:' . http_build_query($config, '', ';');
+        // Build DSN string from config
+        $dsn = 'mysql:' . http_build_query($config, '', ';');
 
-            // Initialize PDO connection
-            $this->connection = new PDO($dsn, 'root', '', [
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_PERSISTENT         => true,
-                PDO::ERRMODE_EXCEPTION       => true,
-                PDO::ATTR_EMULATE_PREPARES   => false,
-            ]);
-        } catch (\PDOException $exception) {
-            // Proper exception handling (log or show error)
-            die('Connection failed: ' . $exception->getMessage());
-        }
+        // Initialize PDO connection
+        $this->connection = new PDO($dsn, 'root', '', [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
     }
 
     public function query(string $query, array $params = [])
     {
-        try {
-            $statement = $this->connection->prepare($query);
+        $this->statement = $this->connection->prepare($query);
 
-            $statement->execute($params);
+        $this->statement->execute($params);
 
-            return $statement;
-        } catch (\PDOException $exception) {
-            die('Query failed: ' . $exception->getMessage());
-        }
+        return $this;
+    }
+
+    public function all()
+    {
+        return $this->statement->fetchAll();
+    }
+
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function findOrfail()
+    {
+        $result = $this->find();
+
+        if (!$result)
+            abort();
+
+        return $result;
     }
 }

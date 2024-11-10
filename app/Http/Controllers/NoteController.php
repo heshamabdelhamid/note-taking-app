@@ -6,8 +6,8 @@ $config = require 'config/database.php';
 
 $db = new Database($config['databases']);
 
-// you can write key id like this 'id' or this ':id'
-$note = $db->query("SELECT * FROM notes where id = :id ", ['id' => $_GET['id']])->fetch();
+// you can write key id in array params like this ['id' => $_GET['id']] or this [':id' => $_GET['id']]
+$note = $db->query("SELECT * FROM notes where id = :id", ['id' => $_GET['id']])->fetch();
 
 if (!$note)
     abort(404);

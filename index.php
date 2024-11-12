@@ -6,4 +6,4 @@ require 'databases/Database.php';
 
 require 'Responce.php';
 
-require 'routes/web.php';
+require 'router.php';

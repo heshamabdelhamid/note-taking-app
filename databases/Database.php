@@ -20,9 +20,7 @@ class Database
     public function query(string $query, array $params = [])
     {
         $this->statement = $this->connection->prepare($query);
-
         $this->statement->execute($params);
-
         return $this;
     }
 
@@ -36,10 +34,9 @@ class Database
         return $this->statement->fetch();
     }
 
-    public function findOrfail()
+    public function findOrFail()
     {
         $result = $this->find();
-
         if (!$result)
             abort();
 

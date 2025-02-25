@@ -12,4 +12,4 @@ $note = $db->query("SELECT * FROM notes where id = :id", [
 
 auth($note['user_id'] === $currentUserId);
 
-require __DIR__ . '/../../../views/notes/show.view.php';
+require __DIR__ . '/../../../../views/notes/show.view.php';
